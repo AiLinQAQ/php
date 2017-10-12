@@ -1,5 +1,4 @@
-# PHP课堂代码!12321
+# 过滤器
 
-## 在主主线中，不会由任何的内容
-
-## 每个知识点会以分支的形式上传
+## filter_has_var//判断是否存在 filter_var//判断变量 filter_input//判断iput内容 filter_input_array#验证表单中每一个元素
+## #filter_var_array 验证数组中每一个元素
