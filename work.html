@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<style type="text/css">
+		/* 标签样式初始化 */
+			body,html{margin:0;padding:0;background:#fff;font-size:14px;font-family:Arial,Helvetica,'STHeiti','Microsoft YaHei','sans-serif'}
+			form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}
+			img{border:0;}
+			ul,li{list-style-type:none;}
+			a{color:#00007F;text-decoration:none;}
+			a:hover{text-decoration:none;}
+			img{width: 300px;height: 300px;}
+			ul,li{list-style: none;}
+			/*li{vertical-align: top;}*/
+			.right{float: right;}
+			.left{float:left;}
+			.dis{display: inline-block; width: 190px;}
+			.dis>div{font-size:20px ;margin-top: 10px;margin-left: 10px;}
+			.warp{width: 500px;height: 500px;border: 1px solid;}
+		</style>
+		<title>Document</title>
+	</head>
+
+	<body>
+		<button id="button1">第一个网站</button>
+		<button id="button2">第一个网站</button>
+		<div id="nr">
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript">
+	var but1 = document.getElementById("button1");
+	var nr = document.getElementById("nr")
+	var but2 = document.getElementById("button2");
+	but1.onclick = function() {
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", "work2.json", true);
+		xhr.onload = function() {
+			if (this.status == 200) {
+				var json1 = JSON.parse(this.responseText);
+				nr.innerHTML = '';
+				for (var i in json1) {
+					var ul=x("ul","",nr);
+					
+					var li1=x("li","",ul);
+					li1.innerHTML=json1[i].login
+					
+					var img1=x("img","",ul);
+					img1.src=json1[i].avatar_url;
+					
+					var span1=x("span","",ul);
+					span1.innerHTML=json1[i].login+"的github"
+					var a1=x("a","",ul);
+					a1.innerHTML="点击跳转";
+					a1.href=json1[i].html_url;
+					
+					
+				}
+			}
+		}
+		xhr.send();
+	}
+	but2.onclick = function() {
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", "work1.json", true);
+		xhr.onload = function() {
+			if (this.status == 200) {
+				var json1 = JSON.parse(this.responseText);
+				console.log(json1)
+				nr.innerHTML = '';
+				for(var i in json1){
+					var ul=x("ul","",nr);
+					li1=x("li","",nr);
+					li1.innerHTML="id "+json1[i].id;
+					
+					li2=x("li","",nr);
+					li2.innerHTML="name "+json1[i].name;	
+					
+					li3=x("li","",nr);
+					li3.innerHTML="username "+json1[i].username;
+					
+					li4=x("li","",nr);
+					li4.innerHTML="email "+json1[i].email;
+					
+					li5=x("li","",nr);
+					li5.innerHTML="phone "+json1[i].phone;
+					
+					li6=x("li","",nr);
+					li6.innerHTML="website "+json1[i].website;	
+					
+					li7=x("li","",nr);
+					
+					li8=x("li","",li7);
+					li8.innerHTML="street "+json1[i].address.street;
+//					
+					li9=x("li","",li7);
+					li9.innerHTML="suite "+json1[i].address.suite;
+					
+					
+					
+					
+					
+				}
+			}
+		}
+		xhr.send();
+	}
+	
+
+	function x(name, className, father) {
+		var a = document.createElement(name);
+		a.className = className;
+		father.appendChild(a);
+		return a;
+	}
+</script>
